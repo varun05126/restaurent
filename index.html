@@ -15,7 +15,8 @@
     }
     header {
       position: fixed;
-      top: 0; left: 0; width: 100%;
+      top: 0;
+      width: 100%;
       background: rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(12px);
       padding: 1rem 2rem;
@@ -42,21 +43,17 @@
       align-items: center;
       text-align: center;
       padding-top: 80px;
-      position: relative;
     }
     .hero h1 {
       font-size: 3.5rem;
       font-weight: 800;
       color: #fff;
       text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-      z-index: 2;
       background: rgba(0, 0, 0, 0.4);
       padding: 1rem 2rem;
       border-radius: 12px;
     }
-    section {
-      padding: 5rem 2rem;
-    }
+    section { padding: 5rem 2rem; }
     .section-title {
       font-size: 2.4rem;
       text-align: center;
@@ -85,11 +82,6 @@
       font-weight: 600;
       border-radius: 8px;
       cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    .filters button:hover,
-    .filters button.active {
-      background: #e05500;
     }
     .menu {
       display: grid;
@@ -111,23 +103,10 @@
       height: 180px;
       object-fit: cover;
     }
-    .item-content {
-      padding: 1rem;
-    }
-    .item-content h3 {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-    }
-    .item-content p {
-      font-size: 0.95rem;
-      color: #333;
-      margin-bottom: 0.25rem;
-    }
-    .item-content span.price {
-      font-weight: bold;
-      color: #000;
-    }
+    .item-content { padding: 1rem; }
+    .item-content h3 { font-size: 1.2rem; font-weight: 600; }
+    .item-content p { font-size: 0.95rem; color: #333; margin: 0.25rem 0; }
+    .item-content span.price { font-weight: bold; }
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -151,42 +130,37 @@
       padding: 1.5rem;
       box-shadow: 0 8px 20px rgba(0,0,0,0.05);
     }
-    .testimonial p {
-      font-style: italic;
-      margin-bottom: 1rem;
-    }
-    .testimonial h4 {
-      font-weight: 600;
-    }
+    .testimonial p { font-style: italic; margin-bottom: 1rem; }
+    .testimonial h4 { font-weight: 600; }
     .map {
       width: 100%;
       height: 400px;
       border: none;
       margin-top: 2rem;
       border-radius: 12px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
-    .chef-profile {
+    .chefs {
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .chef {
+      background: #fefefe;
+      border-radius: 16px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      overflow: hidden;
+      max-width: 300px;
       text-align: center;
     }
-    .chef-profile img {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
+    .chef img {
+      width: 100%;
+      height: 250px;
       object-fit: cover;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-      margin-bottom: 1rem;
     }
-    .chef-profile h3 {
-      font-size: 1.5rem;
-      font-weight: 700;
-    }
-    .chef-profile p {
-      color: #555;
-      margin-top: 0.25rem;
+    .chef-content {
+      padding: 1rem;
     }
     footer {
       background: #111;
@@ -198,6 +172,7 @@
   </style>
 </head>
 <body>
+
   <header>
     <div class="logo">TasteBite</div>
     <nav>
@@ -205,7 +180,7 @@
       <a href="#booking">Book</a>
       <a href="#gallery">Gallery</a>
       <a href="#reviews">Reviews</a>
-      <a href="#chef">Chef</a>
+      <a href="#chefs">Chefs</a>
       <a href="#location">Visit</a>
     </nav>
   </header>
@@ -224,21 +199,28 @@
         <button>Desserts</button>
       </div>
       <div class="menu">
-        <!-- Sample Dishes -->
         <div class="item">
-          <img src="https://images.unsplash.com/photo-1593032457869-50c3c1883aba?auto=format&fit=crop&w=800&q=80" alt="Idli Sambhar">
+          <img src="https://images.unsplash.com/photo-1622431182532-d041a89ef8b3?auto=format&fit=crop&w=800&q=80" alt="Idli Sambhar">
           <div class="item-content">
             <h3>Idli Sambhar</h3>
-            <p>Soft steamed rice cakes served with spicy lentil soup.</p>
+            <p>Soft rice cakes served with spicy lentil soup.</p>
             <span class="price">₹60</span>
           </div>
         </div>
         <div class="item">
-          <img src="https://images.unsplash.com/photo-1631515243341-1f82b8d7e6e5?auto=format&fit=crop&w=800&q=80" alt="Chicken Biryani">
+          <img src="https://images.unsplash.com/photo-1598515214213-092aa56b5b8d?auto=format&fit=crop&w=800&q=80" alt="Chicken Biryani">
           <div class="item-content">
             <h3>Chicken Biryani</h3>
-            <p>Aromatic basmati rice cooked with tender chicken & spices.</p>
+            <p>Aromatic rice cooked with chicken & spices.</p>
             <span class="price">₹180</span>
+          </div>
+        </div>
+        <div class="item">
+          <img src="https://images.unsplash.com/photo-1603898037225-dabea52e0f8f?auto=format&fit=crop&w=800&q=80" alt="Gulab Jamun">
+          <div class="item-content">
+            <h3>Gulab Jamun</h3>
+            <p>Sweet milk-solid balls in sugar syrup.</p>
+            <span class="price">₹50</span>
           </div>
         </div>
       </div>
@@ -249,13 +231,13 @@
     <div class="shadow-box">
       <h2 class="section-title">Reserve Your Table</h2>
       <form style="max-width: 600px; margin: auto;">
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Your Email" required />
-        <input type="tel" placeholder="Phone Number" required />
-        <input type="date" required />
-        <input type="time" required />
-        <input type="number" placeholder="No. of Guests" required min="1" />
-        <button type="submit">Book Now</button>
+        <input type="text" placeholder="Your Name" required style="margin-bottom: 1rem; width: 100%; padding: 0.8rem;" />
+        <input type="email" placeholder="Your Email" required style="margin-bottom: 1rem; width: 100%; padding: 0.8rem;" />
+        <input type="tel" placeholder="Phone Number" required style="margin-bottom: 1rem; width: 100%; padding: 0.8rem;" />
+        <input type="date" required style="margin-bottom: 1rem; width: 100%; padding: 0.8rem;" />
+        <input type="time" required style="margin-bottom: 1rem; width: 100%; padding: 0.8rem;" />
+        <input type="number" placeholder="No. of Guests" required min="1" style="margin-bottom: 1rem; width: 100%; padding: 0.8rem;" />
+        <button type="submit" style="padding: 0.8rem 2rem; background: #ff6600; color: white; border: none;">Book Now</button>
       </form>
     </div>
   </section>
@@ -264,31 +246,56 @@
     <div class="shadow-box">
       <h2 class="section-title">Delicious Gallery</h2>
       <div class="gallery">
-        <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=800&q=80" alt="Gallery">
+        <img src="https://images.unsplash.com/photo-1622431182532-d041a89ef8b3?auto=format&fit=crop&w=800&q=80" alt="Idli Sambhar">
         <img src="https://images.unsplash.com/photo-1578926287710-5ef308fa756b?auto=format&fit=crop&w=800&q=80" alt="Interior">
+        <img src="https://images.unsplash.com/photo-1598515214213-092aa56b5b8d?auto=format&fit=crop&w=800&q=80" alt="Chicken Biryani">
       </div>
     </div>
   </section>
 
   <section id="reviews">
     <div class="shadow-box">
-      <h2 class="section-title">Customer Testimonials</h2>
+      <h2 class="section-title">What Our Customers Say</h2>
       <div class="testimonials">
         <div class="testimonial">
-          <p>"Absolutely loved the Chicken Biryani!"</p>
+          <p>"Absolutely loved the Chicken Biryani! The flavors were amazing."</p>
           <h4>– Ramesh</h4>
+        </div>
+        <div class="testimonial">
+          <p>"A cozy place with delightful South Indian dishes. Loved the ambiance too!"</p>
+          <h4>– Ananya</h4>
+        </div>
+        <div class="testimonial">
+          <p>"One of the best dining experiences I’ve had. Great food and service!"</p>
+          <h4>– Vikram</h4>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="chef">
-    <div class="shadow-box">
-      <h2 class="section-title">Meet Our Chef</h2>
-      <div class="chef-profile">
-        <img src="2023-07-20.jpg" alt="Chef Varun" />
-        <h3>Varun</h3>
-        <p>Professional Chef & Food Enthusiast</p>
+  <section id="chefs" class="section">
+    <h2 class="section-title">Meet Our Chefs</h2>
+    <div class="chefs">
+      <div class="chef">
+        <img src="varun.jpg" alt="Chef Varun">
+        <div class="chef-content">
+          <h4>Varun</h4>
+          <p>Master of South Indian cuisine and modern fusion tiffins.</p>
+        </div>
+      </div>
+      <div class="chef">
+        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Chef Sanjana">
+        <div class="chef-content">
+          <h4>Sanjana</h4>
+          <p>Passionate about healthy meals and traditional flavors.</p>
+        </div>
+      </div>
+      <div class="chef">
+        <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Chef Nishanth">
+        <div class="chef-content">
+          <h4>Nishanth</h4>
+          <p>Expert in spice blends and Hyderabadi-style biryani dishes.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -296,12 +303,13 @@
   <section id="location">
     <div class="shadow-box">
       <h2 class="section-title">Visit Us</h2>
-      <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18..." allowfullscreen loading="lazy"></iframe>
+      <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30312.32405955045!2d78.4046847!3d17.4531435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb914aa3c5cb65%3A0xb5ef943a01ea1312!2sTasteBite!5e0!3m2!1sen!2sin!4v1712345678901" allowfullscreen="" loading="lazy"></iframe>
     </div>
   </section>
 
   <footer>
     &copy; 2025 TasteBite | malthumkarvarun@gmail.com | 7207105126
   </footer>
+
 </body>
 </html>
