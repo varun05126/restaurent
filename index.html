@@ -16,6 +16,7 @@
     body {
       background-color: #fff;
       color: #000;
+      scroll-behavior: smooth;
     }
 
     header {
@@ -79,6 +80,7 @@
       font-weight: 600;
       border-radius: 25px;
       transition: background 0.3s ease;
+      cursor: pointer;
     }
 
     .btn:hover {
@@ -90,6 +92,14 @@
       max-width: 1000px;
       margin: auto;
       text-align: center;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease-out;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     section h3 {
@@ -112,8 +122,37 @@
       font-size: 1.1rem;
     }
 
-    .about, .contact, .feedback, .services, .specials {
+    .about, .contact, .feedback, .services, .specials, .reservation {
       margin-top: 4rem;
+    }
+
+    .testimonials {
+      background-color: #f0f0f0;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .testimonials h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
+
+    .testimonial-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .testimonial {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      font-style: italic;
+      color: #333;
     }
 
     footer {
@@ -122,6 +161,83 @@
       text-align: center;
       font-size: 0.9rem;
       color: #555;
+    }
+
+    .floating-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #000;
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      font-weight: bold;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      cursor: pointer;
+      z-index: 100;
+    }
+
+    /* Modal Styling */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      visibility: hidden;
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .modal.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 90%;
+      text-align: left;
+    }
+
+    .modal-content h4 {
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .modal-content input {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+
+    .modal-content button {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close-modal {
+      text-align: right;
+      font-size: 1.25rem;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -134,6 +250,8 @@
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#specials">Specials</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#reservation">Reservation</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="#feedback">Feedback</a></li>
     </ul>
@@ -147,62 +265,64 @@
     </div>
   </header>
 
-  <section id="menu">
-    <h3>Our Menu</h3>
-    <div class="menu-items">
-      <div>🍕 Pizza - ₹299</div>
-      <div>🍔 Burger - ₹199</div>
-      <div>🍝 Pasta - ₹249</div>
-      <div>🥗 Salad - ₹149</div>
-      <div>🍛 Biryani - ₹199</div>
-      <div>🍰 Cake - ₹149</div>
-      <div>🍜 Ramen - ₹229</div>
-      <div>🥪 Sandwich - ₹129</div>
-      <div>🍩 Donuts - ₹99</div>
-      <div>🍹 Smoothies - ₹149</div>
-      <div>🍤 Shrimp Platter - ₹349</div>
-      <div>🥞 Pancakes - ₹159</div>
-    </div>
-  </section>
-
-  <section id="about" class="about">
-    <h3>About Us</h3>
-    <p>At TasteBite, we blend quality ingredients with exceptional service to bring you a delicious experience. Our chefs craft each dish with passion and creativity. Whether you're dining in or ordering out, we ensure a delightful experience every time.</p>
-  </section>
-
-  <section id="services" class="services">
-    <h3>Our Services</h3>
-    <p>✔️ Dine-in with ambient lighting and elegant decor<br>
-       ✔️ Online ordering with fast delivery<br>
-       ✔️ Catering for parties, events, and corporate needs<br>
-       ✔️ Seasonal menu updates and exclusive chef's specials<br>
-       ✔️ Live kitchen view and chef interaction</p>
-  </section>
-
-  <section id="specials" class="specials">
-    <h3>Today's Specials</h3>
-    <p>🌮 Mexican Taco Fiesta - ₹179<br>
-       🥘 Mediterranean Platter - ₹249<br>
-       🍷 Complimentary Wine with Dinner (6-9 PM)<br>
-       🍨 Free Dessert with Meals Above ₹500</p>
-  </section>
-
-  <section id="contact" class="contact">
-    <h3>Contact Us</h3>
-    <p>📍 Vardhaman College of Engineering, Hyderabad<br>
-    📞 +91 98765 43210<br>
-    ✉️ malthumkarvarun@gmail.com | malthumkarvarun@icloud.com</p>
-  </section>
-
-  <section id="feedback" class="feedback">
-    <h3>Feedback</h3>
-    <p>Your opinion matters! Let us know how we did and how we can improve. We value every piece of feedback and strive to grow with it. Feel free to send suggestions via email or leave a review on our website or social platforms.</p>
-  </section>
+  <section id="menu"><h3>Our Menu</h3><div class="menu-items"><div>🍕 Pizza - ₹299</div><div>🍔 Burger - ₹199</div><div>🍝 Pasta - ₹249</div><div>🥗 Salad - ₹149</div><div>🍛 Biryani - ₹199</div><div>🍰 Cake - ₹149</div></div></section>
+  <section id="about" class="about"><h3>About Us</h3><p>At TasteBite, we blend quality ingredients with exceptional service to bring you a delicious experience. Our chefs craft each dish with passion and creativity.</p></section>
+  <section id="services" class="services"><h3>Our Services</h3><p>✔️ Dine-in • ✔️ Online ordering • ✔️ Catering • ✔️ Chef Specials</p></section>
+  <section id="specials" class="specials"><h3>Today's Specials</h3><p>🌮 Mexican Taco Fiesta - ₹179<br>🥘 Mediterranean Platter - ₹249<br>🍷 Complimentary Wine with Dinner (6-9 PM)</p></section>
+  <section id="testimonials" class="testimonials"><h3>What Our Customers Say</h3><div class="testimonial-list"><div class="testimonial">“Absolutely loved the food and ambiance!”</div><div class="testimonial">“Best place for a weekend dinner.”</div><div class="testimonial">“Quick delivery and tasty meals!”</div></div></section>
+  <section id="reservation" class="reservation"><h3>Make a Reservation</h3><p>Book your table now and enjoy a premium dining experience.<br><button class="btn" onclick="openModal()">Reserve Now</button></p></section>
+  <section id="contact" class="contact"><h3>Contact Us</h3><p>📍 Vardhaman College of Engineering, Hyderabad<br>📞 +91 98765 43210<br>✉️ <a href="mailto:malthumkarvarun@gmail.com">malthumkarvarun@gmail.com</a><br>✉️ <a href="mailto:malthumkarvarun@icloud.com">malthumkarvarun@icloud.com</a></p></section>
+  <section id="feedback" class="feedback"><h3>Feedback</h3><p>Your opinion matters! Let us know how we did and how we can improve.</p></section>
 
   <footer>
     &copy; 2025 TasteBite. All rights reserved.<br>
-    Contact us: malthumkarvarun@gmail.com | malthumkarvarun@icloud.com<br>
+    Contact us: <a href="mailto:malthumkarvarun@gmail.com">malthumkarvarun@gmail.com</a> | <a href="mailto:malthumkarvarun@icloud.com">malthumkarvarun@icloud.com</a><br>
     <small>Disclaimer: This is a fictional restaurant website created for demonstration purposes. We do not hold any rights to brand names, images, or recipes used herein.</small>
   </footer>
+
+  <div class="floating-button" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
+    ↑ Top
+  </div>
+
+  <!-- Reservation Modal -->
+  <div class="modal" id="reservationModal">
+    <div class="modal-content">
+      <div class="close-modal" onclick="closeModal()">&times;</div>
+      <h4>Reserve Your Table</h4>
+      <input type="text" placeholder="Name" required />
+      <input type="email" placeholder="Email" required />
+      <input type="date" required />
+      <input type="time" required />
+      <button>Submit</button>
+    </div>
+  </div>
+
+  <script>
+    if (!window._observerInitialized) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+
+      document.querySelectorAll('section').forEach(section => {
+        observer.observe(section);
+      });
+
+      window._observerInitialized = true;
+    }
+
+    function openModal() {
+      document.getElementById('reservationModal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('reservationModal').classList.remove('active');
+    }
+  </script>
 </body>
 </html>
