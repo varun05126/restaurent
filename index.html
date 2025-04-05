@@ -53,7 +53,7 @@
 
     .hero {
       height: 100vh;
-      background: url('https://source.unsplash.com/1600x900/?south-indian-food') center/cover no-repeat;
+      background: url('https://source.unsplash.com/1600x900/?restaurant-interior,food') center/cover no-repeat;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -72,6 +72,36 @@
 
     section {
       padding: 5rem 2rem;
+    }
+
+    .section-title {
+      font-size: 2.4rem;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      font-weight: 700;
+    }
+
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .filters button {
+      padding: 0.5rem 1.5rem;
+      border: none;
+      background: #ff6600;
+      color: white;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .filters button:hover,
+    .filters button.active {
+      background: #e05500;
     }
 
     .menu {
@@ -105,30 +135,18 @@
     .item-content h3 {
       font-size: 1.2rem;
       font-weight: 600;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.25rem;
     }
 
     .item-content p {
       font-size: 0.95rem;
       color: #333;
+      margin-bottom: 0.25rem;
     }
 
-    .section-title {
-      font-size: 2.2rem;
-      text-align: center;
-      margin-bottom: 3rem;
-      font-weight: 700;
-    }
-
-    .fade-up {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 1s ease;
-    }
-
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .item-content span.price {
+      font-weight: bold;
+      color: #000;
     }
 
     .gallery {
@@ -197,8 +215,15 @@
 
   <section id="menu">
     <h2 class="section-title">Our Menu</h2>
-    <div class="menu">
-      <!-- Menu items continue as before -->
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="veg">Veg</button>
+      <button class="filter-btn" data-filter="nonveg">Non-Veg</button>
+      <button class="filter-btn" data-filter="dessert">Desserts</button>
+      <button class="filter-btn" data-filter="drink">Drinks</button>
+    </div>
+    <div class="menu" id="menuItems">
+      <!-- JS will populate food items here -->
     </div>
   </section>
 
@@ -252,7 +277,45 @@
   </footer>
 
   <script>
-    window.addEventListener('load', () => {
+    const menuData = [
+      { title: "Masala Dosa", category: "veg", img: "https://source.unsplash.com/400x300/?masala-dosa", price: 80 },
+      { title: "Paneer Butter Masala", category: "veg", img: "https://source.unsplash.com/400x300/?paneer", price: 140 },
+      { title: "Chicken Biryani", category: "nonveg", img: "https://source.unsplash.com/400x300/?chicken-biryani", price: 180 },
+      { title: "Fish Curry", category: "nonveg", img: "https://source.unsplash.com/400x300/?fish-curry", price: 200 },
+      { title: "Gulab Jamun", category: "dessert", img: "https://source.unsplash.com/400x300/?gulab-jamun", price: 60 },
+      { title: "Lassi", category: "drink", img: "https://source.unsplash.com/400x300/?lassi", price: 50 },
+      { title: "Idli Sambar", category: "veg", img: "https://source.unsplash.com/400x300/?idli", price: 50 },
+      { title: "Mutton Curry", category: "nonveg", img: "https://source.unsplash.com/400x300/?mutton-curry", price: 220 },
+    ];
+
+    const menuContainer = document.getElementById("menuItems");
+    const filterBtns = document.querySelectorAll(".filter-btn");
+
+    function renderMenu(filter = "all") {
+      menuContainer.innerHTML = "";
+      const filtered = filter === "all" ? menuData : menuData.filter(item => item.category === filter);
+      filtered.forEach(item => {
+        menuContainer.innerHTML += `
+          <div class="item fade-up">
+            <img src="${item.img}" alt="${item.title}" />
+            <div class="item-content">
+              <h3>${item.title}</h3>
+              <p class="price">₹${item.price}</p>
+            </div>
+          </div>`;
+      });
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        filterBtns.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderMenu(btn.dataset.filter);
+      });
+    });
+
+    window.addEventListener("load", () => {
+      renderMenu();
       document.querySelectorAll('.fade-up').forEach(el => {
         const fadeObserver = new IntersectionObserver(entries => {
           entries.forEach(entry => {
