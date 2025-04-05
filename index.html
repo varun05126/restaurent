@@ -6,323 +6,310 @@
   <title>TasteBite</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
-
     body {
-      background-color: #fff;
-      color: #000;
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #000;
+      color: #fff;
       scroll-behavior: smooth;
     }
 
     header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-      background: url('https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
-      color: #fff;
-      padding: 2rem;
-    }
-
-    nav {
       position: fixed;
       top: 0;
+      left: 0;
       width: 100%;
-      background-color: rgba(255, 255, 255, 0.95);
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(12px);
       padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-      z-index: 10;
+      z-index: 9999;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    nav h1 {
+    header .logo {
+      font-size: 1.5rem;
       font-weight: 800;
-      color: #000;
     }
 
-    nav ul {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    nav ul li a {
+    header nav a {
+      color: white;
+      margin-left: 1.5rem;
       text-decoration: none;
-      color: #000;
-      font-weight: 500;
+      font-weight: 600;
+      transition: color 0.3s ease;
     }
 
-    .hero-content h2 {
+    header nav a:hover {
+      color: #ffcc00;
+    }
+
+    .hero-video {
+      position: relative;
+      overflow: hidden;
+      height: 100vh;
+      padding-top: 70px;
+    }
+
+    .hero-video video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .hero-video .hero-text {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      text-align: center;
       font-size: 3rem;
       font-weight: 800;
+    }
+
+    .feature-section, .extra-section, .testimonial-section {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .feature-section h3, .extra-section h3, .testimonial-section h3 {
+      font-size: 2.5rem;
       margin-bottom: 1rem;
     }
 
-    .hero-content p {
-      font-size: 1.25rem;
-      margin-bottom: 2rem;
+    .feature-cards, .extra-content, .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
     }
 
-    .btn {
-      background-color: #4CAF50;
-      padding: 0.75rem 2rem;
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      border-radius: 25px;
-      transition: background 0.3s ease;
-      cursor: pointer;
+    .feature-cards div, .extra-content div, .testimonials div {
+      background: linear-gradient(135deg, #1a1a1a, #333);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
 
-    .btn:hover {
-      background-color: #388e3c;
+    .feature-cards div:hover, .extra-content div:hover, .testimonials div:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.7);
     }
 
-    section {
+    .parallax {
+      background: url('https://images.unsplash.com/photo-1606788075761-69d09f3de918?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+      height: 60vh;
+      background-attachment: fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2.5rem;
+      font-weight: 800;
+    }
+
+    .menu-section {
       padding: 4rem 2rem;
-      max-width: 1000px;
-      margin: auto;
+      background-color: #111;
       text-align: center;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 1s ease-out;
     }
 
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    section h3 {
-      font-size: 2rem;
-      font-weight: 700;
+    .menu-section h3 {
+      font-size: 2.2rem;
       margin-bottom: 2rem;
     }
 
     .menu-items {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      display: flex;
+      flex-wrap: wrap;
       gap: 2rem;
+      justify-content: center;
     }
 
-    .menu-items div {
-      background: #f9f9f9;
+    .menu-item {
+      background: #222;
       padding: 1.5rem;
       border-radius: 16px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      font-size: 1.1rem;
+      width: 260px;
+      transition: transform 0.3s ease, background 0.3s ease;
     }
 
-    .about, .contact, .feedback, .services, .specials, .reservation {
-      margin-top: 4rem;
+    .menu-item:hover {
+      transform: scale(1.05);
+      background: #333;
     }
 
-    .testimonials {
-      background-color: #f0f0f0;
-      padding: 4rem 2rem;
-      text-align: center;
+    .menu-item h4 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
     }
 
-    .testimonials h3 {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 2rem;
-    }
-
-    .testimonial-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .testimonial {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 16px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      font-style: italic;
-      color: #333;
-    }
-
-    footer {
-      background: #f2f2f2;
+    .footer {
       padding: 2rem;
+      background: #000;
       text-align: center;
       font-size: 0.9rem;
-      color: #555;
+      border-top: 1px solid #222;
     }
 
-    .floating-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #000;
+    .footer a {
       color: #fff;
-      padding: 0.75rem 1.5rem;
-      border-radius: 50px;
-      font-weight: bold;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      cursor: pointer;
-      z-index: 100;
+      margin: 0 0.5rem;
+      text-decoration: none;
     }
 
-    /* Modal Styling */
-    .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(10px);
-      visibility: hidden;
+    .footer a:hover {
+      color: #ffcc00;
+    }
+
+    .scroll-effect {
       opacity: 0;
-      transition: all 0.3s ease;
-      z-index: 1000;
+      transform: translateY(50px);
+      transition: all 1s ease;
     }
 
-    .modal.active {
-      visibility: visible;
+    .scroll-effect.visible {
       opacity: 1;
-    }
-
-    .modal-content {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      max-width: 400px;
-      width: 90%;
-      text-align: left;
-    }
-
-    .modal-content h4 {
-      margin-bottom: 1rem;
-      font-size: 1.5rem;
-    }
-
-    .modal-content input {
-      width: 100%;
-      padding: 0.75rem;
-      margin-bottom: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-    }
-
-    .modal-content button {
-      width: 100%;
-      padding: 0.75rem;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .close-modal {
-      text-align: right;
-      font-size: 1.25rem;
-      cursor: pointer;
+      transform: translateY(0);
     }
   </style>
 </head>
 <body>
-  <nav>
-    <h1>TasteBite</h1>
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#menu">Menu</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#specials">Specials</a></li>
-      <li><a href="#testimonials">Testimonials</a></li>
-      <li><a href="#reservation">Reservation</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="#feedback">Feedback</a></li>
-    </ul>
-  </nav>
-
-  <header id="home">
-    <div class="hero-content">
-      <h2>Welcome to TasteBite</h2>
-      <p>Serving happiness on every plate 🍽️</p>
-      <a href="#menu" class="btn">Explore Menu</a>
-    </div>
+  <header>
+    <div class="logo">TasteBite</div>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#menu">Menu</a>
+      <a href="#extras">Extras</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <section id="menu"><h3>Our Menu</h3><div class="menu-items"><div>🍕 Pizza - ₹299</div><div>🍔 Burger - ₹199</div><div>🍝 Pasta - ₹249</div><div>🥗 Salad - ₹149</div><div>🍛 Biryani - ₹199</div><div>🍰 Cake - ₹149</div></div></section>
-  <section id="about" class="about"><h3>About Us</h3><p>At TasteBite, we blend quality ingredients with exceptional service to bring you a delicious experience. Our chefs craft each dish with passion and creativity.</p></section>
-  <section id="services" class="services"><h3>Our Services</h3><p>✔️ Dine-in • ✔️ Online ordering • ✔️ Catering • ✔️ Chef Specials</p></section>
-  <section id="specials" class="specials"><h3>Today's Specials</h3><p>🌮 Mexican Taco Fiesta - ₹179<br>🥘 Mediterranean Platter - ₹249<br>🍷 Complimentary Wine with Dinner (6-9 PM)</p></section>
-  <section id="testimonials" class="testimonials"><h3>What Our Customers Say</h3><div class="testimonial-list"><div class="testimonial">“Absolutely loved the food and ambiance!”</div><div class="testimonial">“Best place for a weekend dinner.”</div><div class="testimonial">“Quick delivery and tasty meals!”</div></div></section>
-  <section id="reservation" class="reservation"><h3>Make a Reservation</h3><p>Book your table now and enjoy a premium dining experience.<br><button class="btn" onclick="openModal()">Reserve Now</button></p></section>
-  <section id="contact" class="contact"><h3>Contact Us</h3><p>📍 Vardhaman College of Engineering, Hyderabad<br>📞 +91 98765 43210<br>✉️ <a href="mailto:malthumkarvarun@gmail.com">malthumkarvarun@gmail.com</a><br>✉️ <a href="mailto:malthumkarvarun@icloud.com">malthumkarvarun@icloud.com</a></p></section>
-  <section id="feedback" class="feedback"><h3>Feedback</h3><p>Your opinion matters! Let us know how we did and how we can improve.</p></section>
-
-  <footer>
-    &copy; 2025 TasteBite. All rights reserved.<br>
-    Contact us: <a href="mailto:malthumkarvarun@gmail.com">malthumkarvarun@gmail.com</a> | <a href="mailto:malthumkarvarun@icloud.com">malthumkarvarun@icloud.com</a><br>
-    <small>Disclaimer: This is a fictional restaurant website created for demonstration purposes. We do not hold any rights to brand names, images, or recipes used herein.</small>
-  </footer>
-
-  <div class="floating-button" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
-    ↑ Top
+  <div class="hero-video">
+    <video autoplay muted loop>
+      <source src="https://cdn.coverr.co/videos/coverr-a-meal-being-served-2832/1080p.mp4" type="video/mp4">
+    </video>
+    <div class="hero-text">Welcome to TasteBite</div>
   </div>
 
-  <!-- Reservation Modal -->
-  <div class="modal" id="reservationModal">
-    <div class="modal-content">
-      <div class="close-modal" onclick="closeModal()">&times;</div>
-      <h4>Reserve Your Table</h4>
-      <input type="text" placeholder="Name" required />
-      <input type="email" placeholder="Email" required />
-      <input type="date" required />
-      <input type="time" required />
-      <button>Submit</button>
+  <section id="features" class="feature-section scroll-effect">
+    <h3>Why Choose TasteBite?</h3>
+    <div class="feature-cards">
+      <div>
+        <h4>Farm Fresh Ingredients</h4>
+        <p>We source locally and responsibly to ensure only the best quality in every dish.</p>
+      </div>
+      <div>
+        <h4>Chef-Curated Recipes</h4>
+        <p>Our menu is designed by expert chefs who pour creativity into every plate.</p>
+      </div>
+      <div>
+        <h4>Ambience Like No Other</h4>
+        <p>Step into a relaxing environment that blends elegance with comfort.</p>
+      </div>
     </div>
+  </section>
+
+  <div class="parallax scroll-effect">Feel the Flavor</div>
+
+  <section id="menu" class="menu-section scroll-effect">
+    <h3>Our Signature North Indian Dishes</h3>
+    <div class="menu-items">
+      <div class="menu-item">
+        <h4>Butter Chicken</h4>
+        <p>Succulent chicken cooked in a creamy tomato gravy with spices and butter.</p>
+      </div>
+      <div class="menu-item">
+        <h4>Paneer Tikka</h4>
+        <p>Marinated paneer cubes grilled to perfection with capsicum and onion.</p>
+      </div>
+      <div class="menu-item">
+        <h4>Dal Makhani</h4>
+        <p>Creamy black lentils simmered overnight with butter and mild spices.</p>
+      </div>
+      <div class="menu-item">
+        <h4>Chole Bhature</h4>
+        <p>Spicy chickpeas served with fluffy deep-fried bhature bread.</p>
+      </div>
+      <div class="menu-item">
+        <h4>Rajma Chawal</h4>
+        <p>Kidney beans in rich gravy served with steamed basmati rice.</p>
+      </div>
+      <div class="menu-item">
+        <h4>Gulab Jamun</h4>
+        <p>Soft milk-solid dumplings soaked in rose-scented sugar syrup.</p>
+      </div>
+      <div class="menu-item">
+        <h4>Lassi</h4>
+        <p>Cool and creamy yogurt-based drink served sweet or salted.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="extras" class="extra-section scroll-effect">
+    <h3>Explore More</h3>
+    <div class="extra-content">
+      <div>
+        <h4>Live Music Nights</h4>
+        <p>Join us every weekend for soothing music and delicious food.</p>
+      </div>
+      <div>
+        <h4>Custom Catering</h4>
+        <p>We offer catering services for events, parties, and corporate functions.</p>
+      </div>
+      <div>
+        <h4>Chef's Table Experience</h4>
+        <p>Book our exclusive chef’s table and enjoy a curated tasting menu.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" class="testimonial-section scroll-effect">
+    <h3>What Our Guests Say</h3>
+    <div class="testimonials">
+      <div>
+        <h4>"Authentic flavors that take me back home!"</h4>
+        <p>- A nostalgic guest</p>
+      </div>
+      <div>
+        <h4>"Love the dosa and the ambience is amazing!"</h4>
+        <p>- Local foodie</p>
+      </div>
+      <div>
+        <h4>"Perfect weekend spot for my family."</h4>
+        <p>- Happy customer</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="contact" class="footer">
+    <p>Contact: <a href="mailto:malthumkarvarun@gmail.com">malthumkarvarun@gmail.com</a> | <a href="https://www.icloud.com">iCloud</a> | <a href="tel:7207105126">7207105126</a></p>
+    <p>&copy; 2025 TasteBite. All rights reserved.</p>
   </div>
 
   <script>
-    if (!window._observerInitialized) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      }, {
-        threshold: 0.1
+    const sectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
       });
+    }, { threshold: 0.1 });
 
-      document.querySelectorAll('section').forEach(section => {
-        observer.observe(section);
-      });
-
-      window._observerInitialized = true;
-    }
-
-    function openModal() {
-      document.getElementById('reservationModal').classList.add('active');
-    }
-
-    function closeModal() {
-      document.getElementById('reservationModal').classList.remove('active');
-    }
+    document.querySelectorAll('.scroll-effect').forEach(section => {
+      sectionObserver.observe(section);
+    });
   </script>
 </body>
 </html>
