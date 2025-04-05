@@ -1,198 +1,369 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Varun's Indian Restaurant</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #fffaf0;
-      color: #333;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    header {
-      background-color: #111;
-      color: white;
-      padding: 2rem;
-      text-align: center;
-    }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
 
-    header h1 {
-      margin: 0;
-      font-size: 3rem;
-    }
+        header {
+            background-color: #8BC34A;
+            padding: 20px;
+            text-align: center;
+        }
 
-    nav {
-      background-color: #333;
-      display: flex;
-      justify-content: center;
-    }
+        header h1 {
+            color: #fff;
+            font-size: 36px;
+        }
 
-    nav a {
-      color: white;
-      padding: 1rem;
-      text-decoration: none;
-      font-weight: bold;
-    }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
 
-    nav a:hover {
-      background-color: #555;
-    }
+        nav ul li {
+            display: inline-block;
+            margin: 0 15px;
+        }
 
-    section {
-      padding: 3rem 1rem;
-      max-width: 1200px;
-      margin: auto;
-    }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
 
-    .section-title {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 2rem;
-    }
+        .hero {
+            background-color: #fff;
+            padding: 40px;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-    }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
 
-    .gallery img {
-      width: 100%;
-      border-radius: 10px;
-      height: 200px;
-      object-fit: cover;
-    }
+        .hero h2 {
+            font-size: 36px;
+            color: #333;
+        }
 
-    .testimonials, .chefs {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-    }
+        .hero .btn {
+            background-color: #8BC34A;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin-top: 20px;
+            display: inline-block;
+        }
 
-    .testimonial, .chef {
-      background: #fff;
-      padding: 1rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      max-width: 300px;
-      text-align: center;
-    }
+        .hero-image {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: cover;
+            margin-top: 20px;
+        }
 
-    .chef img {
-      width: 100%;
-      border-radius: 50%;
-      height: 200px;
-      object-fit: cover;
-    }
+        section {
+            padding: 40px 20px;
+            text-align: center;
+        }
 
-    .booking-form {
-      max-width: 500px;
-      margin: auto;
-    }
+        h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            color: #333;
+        }
 
-    .booking-form input, .booking-form textarea, .booking-form button {
-      width: 100%;
-      padding: 0.75rem;
-      margin: 0.5rem 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
+        .menu-images img {
+            width: 100%;
+            height: auto;
+            max-width: 300px;
+            margin: 10px;
+            object-fit: cover;
+        }
 
-    footer {
-      background-color: #111;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-    }
+        h3 {
+            font-size: 24px;
+            color: #333;
+            margin-top: 20px;
+        }
 
-    iframe {
-      width: 100%;
-      border: none;
-      height: 400px;
-    }
-  </style>
+        ul {
+            list-style-type: none;
+            margin-top: 10px;
+            padding: 0;
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .about-image {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            object-fit: cover;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form button {
+            background-color: #8BC34A;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        form button:hover {
+            background-color: #7cb342;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer .social-icons {
+            margin-top: 20px;
+        }
+
+        footer .social-icons a {
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: 0;
+        }
+
+        .review {
+            background-color: #f8f8f8;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        #newsletter form input {
+            padding: 10px;
+            width: 70%;
+            border-radius: 5px;
+        }
+
+        #newsletter form button {
+            padding: 10px 20px;
+            background-color: #8BC34A;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .menu-images img {
+                max-width: 80%;
+            }
+
+            .about-image {
+                max-width: 90%;
+            }
+
+            .hero h2 {
+                font-size: 28px;
+            }
+
+            .hero .btn {
+                font-size: 16px;
+                padding: 8px 16px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <header>
-    <h1>Varun's Indian Restaurant</h1>
-    <p>Experience the true flavors of India</p>
-  </header>
-  <nav>
-    <a href="#gallery">Gallery</a>
-    <a href="#booking">Book Table</a>
-    <a href="#testimonials">Testimonials</a>
-    <a href="#chefs">Chefs</a>
-    <a href="#map">Map</a>
-  </nav>
+    <header>
+        <h1>restaurent website</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#location">Location</a></li>
+                <li><a href="#newsletter">Newsletter</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <section id="gallery">
-    <h2 class="section-title">Delicious Gallery</h2>
-    <div class="gallery">
-      <img src="https://images.pexels.com/photos/14831540/pexels-photo-14831540.jpeg" alt="Dosa">
-      <img src="https://images.pexels.com/photos/14731625/pexels-photo-14731625.jpeg" alt="Biryani">
-      <img src="https://images.pexels.com/photos/15014919/pexels-photo-15014919.jpeg" alt="Gulab Jamun">
-      <img src="https://images.pexels.com/photos/16335796/pexels-photo-16335796.jpeg" alt="Idli">
-      <img src="https://images.pexels.com/photos/3921034/pexels-photo-3921034.jpeg" alt="Samosa">
-      <img src="https://images.pexels.com/photos/5903225/pexels-photo-5903225.jpeg" alt="Paneer Tikka">
-      <img src="https://images.pexels.com/photos/14608762/pexels-photo-14608762.jpeg" alt="Tandoori Chicken">
-      <img src="https://images.pexels.com/photos/14610769/pexels-photo-14610769.jpeg" alt="Lassi">
-      <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg" alt="Indian Thali">
-      <img src="https://images.pexels.com/photos/1639567/pexels-photo-1639567.jpeg" alt="Masala Chai">
-    </div>
-  </section>
+    <section id="home" class="hero">
+        <h2>Elegant Dining Experience</h2>
+        <p>At our restaurent, we're passionate about serving farm-fresh, organic, and expertly prepared dishes...</p>
+        <a href="#menu" class="btn">View Menu</a>
+        <img src="delicous plate.jpg" alt="Delicious plated food" class="hero-image">
+    </section>
 
-  <section id="booking">
-    <h2 class="section-title">Book Your Table</h2>
-    <form class="booking-form">
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Email Address" required>
-      <input type="date" required>
-      <input type="time" required>
-      <textarea placeholder="Special Requests" rows="4"></textarea>
-      <button type="submit">Book Now</button>
-    </form>
-  </section>
+    <section id="menu">
+        <h2>🌿 Our Menu 🌿</h2>
+        <p>Explore our delicious offerings.</p>
+        <h3>🥗 Starters</h3>
+        <ul>
+            <li><strong>Vegetable Uppu Urundai</strong> – Steamed rice dumplings seasoned with coconut and curry leaves</li>
+            <li><strong>Medu Vada</strong> – Crispy lentil doughnuts served with coconut chutney and sambar</li>
+            <li><strong>Paneer 65</strong> – Spicy deep-fried paneer cubes tossed in South Indian spices</li>
+            <li><strong>Chicken 65</strong> – A classic deep-fried chicken dish with bold flavors</li>
+            <li><strong>Mutton Sukka</strong> – Dry-spiced mutton cooked with curry leaves and black pepper</li>
+        </ul>
+        
+        <h3>🍛 Main Course - Vegetarian</h3>
+        <ul>
+            <li><strong>Masala Dosa</strong> – Crispy dosa filled with spiced potato mash, served with chutneys and sambar</li>
+            <li><strong>Ghee Roast Dosa</strong> – Thin and crispy dosa roasted with pure desi ghee</li>
+            <li><strong>Tomato Rasam with Rice</strong> – Spicy and tangy tomato soup paired with steamed rice</li>
+            <li><strong>Vegetable Kootu</strong> – Mixed vegetables cooked in coconut and lentils</li>
+            <li><strong>Curd Rice</strong> – Comforting yogurt rice garnished with curry leaves and pomegranate</li>
+        </ul>
 
-  <section id="testimonials">
-    <h2 class="section-title">What Our Customers Say</h2>
-    <div class="testimonials">
-      <div class="testimonial">
-        <p>"Amazing food and great ambiance! Highly recommend!"</p>
-        <strong>- Aarti</strong>
-      </div>
-      <div class="testimonial">
-        <p>"Authentic Indian flavors, friendly staff. Loved it!"</p>
-        <strong>- Ramesh</strong>
-      </div>
-    </div>
-  </section>
+        <h3>🍗 Main Course - Non-Vegetarian</h3>
+        <ul>
+            <li><strong>Chicken Chettinad</strong> – Fiery and aromatic chicken curry with coconut and whole spices</li>
+            <li><strong>Mutton Curry</strong> – Slow-cooked mutton in a flavorful South Indian gravy</li>
+            <li><strong>Meen Kuzhambu</strong> – Traditional fish curry cooked with tamarind and spices</li>
+            <li><strong>Prawn Masala</strong> – Juicy prawns cooked in a rich South Indian spice mix</li>
+            <li><strong>Egg Dosa</strong> – Crispy dosa layered with a spiced egg mixture</li>
+        </ul>
 
-  <section id="chefs">
-    <h2 class="section-title">Our Head Chef</h2>
-    <div class="chefs">
-      <div class="chef">
-        <img src="varun.jpg" alt="Chef Varun">
-        <h3>Chef Varun</h3>
-        <p>With a passion for Indian cuisine and over 10 years of experience, Chef Varun brings traditional recipes to life with a modern twist.</p>
-      </div>
-    </div>
-  </section>
+        <h3>🍽 Side Dishes</h3>
+        <ul>
+            <li><strong>Parotta with Salna</strong> – Flaky South Indian bread served with spicy gravy</li>
+            <li><strong>Steamed Idiyappam</strong> – String hoppers served with coconut milk and kurma</li>
+            <li><strong>Kara Kuzhambu</strong> – Spicy tamarind-based curry with vegetables</li>
+        </ul>
 
-  <section id="map">
-    <h2 class="section-title">Find Us</h2>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d243646.650285852!2d78.24323195335956!3d17.412608640902424!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99c01f6506fb%3A0xf87f7c08fefb1144!2sHyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1649339479855!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-  </section>
+        <h3>🍰 Desserts</h3>
+        <ul>
+            <li><strong>Paal Payasam</strong> – Traditional rice pudding cooked with milk and jaggery</li>
+            <li><strong>Kesari Bath</strong> – Sweet semolina dessert with ghee and nuts</li>
+            <li><strong>Elaneer Pudding</strong> – Refreshing tender coconut pudding</li>
+        </ul>
+    </section>
 
-  <footer>
-    <p>&copy; 2025 Varun's Indian Restaurant. All rights reserved.</p>
-  </footer>
+    <section id="reviews">
+        <h2>Customer Reviews</h2>
+        <div class="review">
+            <p>"The food is absolutely delicious and the atmosphere is so cozy!"</p>
+            <span>- vysh</span>
+        </div>
+        <div class="review">
+            <p>"Best farm-to-table experience I've had. Highly recommend the chicken Chettinad!"</p>
+            <span>- varun</span>
+        </div>
+    </section>
+
+    <section id="location">
+        <h2>Find Us</h2>
+        <p>Come and enjoy our meals at the heart of the city.</p>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3810.265111807583!2d78.30489377516191!3d17.25440428361027!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1svardhaman%20college%20map%20link!5e0!3m2!1sen!2sin!4v1739882832717!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <p>Our story, our passion.</p>
+        <p>Our main mission is to serve good quality food so that consumers can happily eat and visit us again.</p>
+        <p>The image below shows our restaurant interior:</p>
+        <img src="interior.jpg" alt="Restaurant interior" class="about-image">
+    </section>
+
+    <section id="contact">
+        <h2>Reservations & Contact</h2>
+        <form action="/submit-form" method="POST">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message or Reservation Details</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">Send Message</button>
+            <pre>
+
+
+            </pre>
+            <p>If you are facing any issues, use our Google Form reservation to reserve a table for you:</p>
+            
+            <!-- Adjusted Google Form iframe -->
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc9YTevaX3YSiBlXcSzcaJipBYQfk8Tv69z05fMkl0X0mIEhQ/viewform?embedded=true" width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+
+        </form>
+    </section>
+
+    <section id="newsletter">
+        <h2>Stay Updated!</h2>
+        <form action="/newsletter-signup" method="POST">
+            <input type="email" placeholder="Your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; this is sample web for mini project</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/VMEG.AUTONOMOUS" class="facebook">Facebook</a>
+            <a href="https://www.instagram.com/vardhamancollegehyd?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="instagram">Instagram</a>
+            <a href="#" class="twitter">Twitter</a>
+        </div>
+    </footer>
 </body>
-
 </html>
